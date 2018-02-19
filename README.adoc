@@ -48,7 +48,7 @@ Spring Cloud Services can add the certificate for you automatically. For this to
 
 To do this in the CLI, execute the following command where target.cf.com should be changed with your target.
 
-[source,bash]
+[source,log]
 ----
 $ cf set-env my-app TRUST_CERTS target.cf.com
 Setting env variable 'TRUST_CERTS' to 'target.cf.com' for app my-app in org myorg / space development as user...
