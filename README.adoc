@@ -57,14 +57,14 @@ TIP: Use 'cf restage my-app' to ensure your env variable changes take effect
 $ cf restage my-app
 ----
 
-Alternatively, you can add it to a manifest file. 
+Alternatively, you can add it to a manifest file where target.cf.com should be changed with your target. 
 
 [source,bash]
 ----
 ---
   ...
   env:
-    TRUST_CERTS: api.system.52.173.38.39.cf.pcfazure.com
+    TRUST_CERTS: target.cf.com
 ----
 
 == Java 9 
