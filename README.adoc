@@ -41,6 +41,32 @@ We'll be pushing applications and creating services in Pivotal Cloud Foundry (PC
 ** download and install the CLI matching your operating system
 ** login to the CF CLI (`cf login -a api.run.pivotal.io`)
 
+== Spring Cloud Services and Self-Signed SSL Certificates
+As mentioned in the PCF https://docs.pivotal.io/spring-cloud-services/1-5/common/service-registry/writing-client-applications.html[Spring Cloud Services online documentation]. Spring Cloud Services uses HTTPS for all client-to-service communication. If your PCF installation is using a self-signed SSL certificate, the certificate will need to be added to the JVM truststore.
+
+Spring Cloud Services can add the certificate for you automatically. For this to work, you must set the TRUST_CERTS environment variable on your application to the API endpoint of your Elastic Runtime instance. You can do this at the CF CLI or add it to a manifest file of your application.
+
+To do this in the CLI, execute the following command where target.cf.com should be changed with your target.
+
+[source,bash]
+----
+$ cf set-env my-app TRUST_CERTS target.cf.com
+Setting env variable 'TRUST_CERTS' to 'target.cf.com' for app my-app in org myorg / space development as user...
+OK
+TIP: Use 'cf restage my-app' to ensure your env variable changes take effect
+$ cf restage my-app
+----
+
+Alternatively, you can add it to a manifest file. 
+
+[source,bash]
+----
+---
+  ...
+  env:
+    TRUST_CERTS: api.system.52.173.38.39.cf.pcfazure.com
+----
+
 == Java 9 
 IMPORTANT: As of February 2018
 JDK 9 has deprecated the java.xml.bind module which is to be removed, see: https://docs.oracle.com/javase/9/docs/api/java.xml.bind-summary.html. If you get a Class Not Found exception for JAXB `java.lang.ClassNotFoundException: javax.xml.bind.JAXBException` then in the Maven pom.xml add:
