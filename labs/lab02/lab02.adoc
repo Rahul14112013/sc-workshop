@@ -158,6 +158,7 @@ Artifact:: cloud-native-spring-ui
 . In the dependencies section, add each of the following manually:
 
 - *Vaadin*
+- *HATEOAS*
 - *Actuator*
 - *Feign*
 - *Service Registry (PCF)*
